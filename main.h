@@ -44,6 +44,9 @@ int handle_print(const char *fmt, int *i,
 va_list list, char buffer[], int flags, int width, int precision, int size);
 
 /****************** FUNCTIONS ******************/
+/* Functions for Task 01 */
+int print_int(va_list args);
+int print_dec(va_list args);
 
 /* Funtions to print chars and strings */
 int print_char(va_list types, char buffer[],
