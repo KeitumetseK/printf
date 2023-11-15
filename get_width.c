@@ -1,21 +1,5 @@
 #include "main.h"
 /**
- * is_digit - Verifies if a char is a digit
- * @c: Char to be evaluated
- *
- * Return: 1 if c is a digit, 0 otherwise
- */
-
-int is_digit(char c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-
-	return (0);
-}
-
-
-/**
  * get_width - Calculates the width for printing
  * @format: Formatted string in which to print the arguments.
  * @i: List of arguments to be printed.
