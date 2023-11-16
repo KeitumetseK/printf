@@ -1,20 +1,6 @@
 #include "main.h"
 
 /**
- * is_printable - Evaluates if a char is printable
- * @c: Char to be evaluated.
- *
- * Return: 1 if c is printable, 0 otherwise
- */
-int is_printable(char c)
-{
-	if (c >= 32 && c < 127)
-		return (1);
-
-	return (0);
-}
-
-/**
  * append_hexa_code - Append ascci in hexadecimal code to buffer
  * @buffer: Array of chars.
  * @i: Index at which to start appending.
@@ -95,28 +81,27 @@ long int convert_size_unsgnd(unsigned long int num, int size)
  */
 int get_width(const char *format, int *i, va_list list)
 {
-        int curr_i;
-        int width = 0;
+	int curr_i;
+	int width = 0;
 
+	for (curr_i = *i + 1; format[curr_i] != '\0'; curr_i++)
+	{
+		if (is_digit(format[curr_i]))
+		{
+			width *= 10;
+			width += format[curr_i] - '0';
+		}
+		else if (format[curr_i] == '*')
+		{
+			curr_i++;
+			width = va_arg(list, int);
+			break;
+		}
+		else
+			break;
+	}
 
-        for (curr_i = *i + 1; format[curr_i] != '\0'; curr_i++)
-        {
-                if (is_digit(format[curr_i]))
-                {
-                        width *= 10;
-                        width += format[curr_i] - '0';
-                }
-                else if (format[curr_i] == '*')
-                {
-                        curr_i++;
-                        width = va_arg(list, int);
-                        break;
-                }
-                else
-                        break;
-        }
+	*i = curr_i - 1;
 
-        *i = curr_i - 1;
-
-        return (width);
+	return (width);
 }
